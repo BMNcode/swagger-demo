@@ -7,6 +7,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.File;
@@ -35,10 +36,10 @@ public class PdfService {
 
 
     private File renderPdf(String html) throws IOException, DocumentException {
-        File file = File.createTempFile("students", ".pdf");
+        File file = File.createTempFile("orders", ".pdf");
         OutputStream outputStream = new FileOutputStream(file);
         ITextRenderer renderer = new ITextRenderer(20f * 4f / 3f, 20);
-        renderer.setDocumentFromString(html, new ClassPathResource(PDF_RESOURCES).getURL().toExternalForm());
+        renderer.setDocumentFromString(html);
         renderer.layout();
         renderer.createPDF(outputStream);
         outputStream.close();
@@ -47,12 +48,18 @@ public class PdfService {
     }
 
     private Context getContext() {
+
         Context context = new Context();
-        context.setVariable("students", orderHelper.getOrder());
+        context.setVariable("orderEntry", orderHelper.getOrder());
         return context;
     }
 
     private String loadAndFillTemplate(Context context) {
+//        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+//        templateResolver.setPrefix("/");
+//        templateResolver.setSuffix(".html");
+//        templateResolver.setTemplateMode("HTML");
+//        templateEngine.setTemplateResolver(templateResolver);
         return templateEngine.process("order", context);
     }
 }

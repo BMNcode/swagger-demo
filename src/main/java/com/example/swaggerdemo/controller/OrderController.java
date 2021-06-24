@@ -1,10 +1,13 @@
 package com.example.swaggerdemo.controller;
 
+import com.example.swaggerdemo.model.Message;
 import com.example.swaggerdemo.service.PdfService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +43,22 @@ public class OrderController {
         }
     }
 
+//    @GetMapping("/get-pdf")
+//    public ResponseEntity<?> downloadPDF (@RequestBody Message message) {
+//        try {
+//            Path file = Paths.get(pdfService.generatePdf().getAbsolutePath());
+//            if (Files.exists(file)) {
+//                response.setContentType("application/pdf");
+//                response.addHeader("Content-Disposition",
+//                        "attachment; filename=" + file.getFileName());
+//                Files.copy(file, response.getOutputStream());
+//                response.getOutputStream().flush();
+//            }
+//        } catch (DocumentException | IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
+
 
 //    @Autowired
 //    ServletContext servletContext;
@@ -49,8 +68,8 @@ public class OrderController {
 //    public OrderController(TemplateEngine templateEngine) {
 //        this.templateEngine = templateEngine;
 //    }
-
-//    @RequestMapping(path = "/pdf")
+//
+//    @GetMapping(path = "/pdf")
 //    public ResponseEntity<?> getPDF(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //
 //        /* Do Business Logic*/
