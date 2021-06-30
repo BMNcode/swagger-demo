@@ -655,3 +655,7 @@ video {
 .w-full {
   width: 100%;
 }
+
+.text-block {
+    margin:345px 500px 345px 500px;
+}

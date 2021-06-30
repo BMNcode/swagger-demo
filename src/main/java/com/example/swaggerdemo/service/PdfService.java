@@ -55,11 +55,6 @@ public class PdfService {
     }
 
     private String loadAndFillTemplate(Context context) {
-//        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-//        templateResolver.setPrefix("/");
-//        templateResolver.setSuffix(".html");
-//        templateResolver.setTemplateMode("HTML");
-//        templateEngine.setTemplateResolver(templateResolver);
         return templateEngine.process("order", context);
     }
 }
