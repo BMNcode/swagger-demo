@@ -19,8 +19,8 @@ import java.io.OutputStream;
 public class PdfService {
 
     private static final String PDF_RESOURCES = "/pdf-resources/";
-    private OrderHelper orderHelper;
-    private SpringTemplateEngine templateEngine;
+    private final OrderHelper orderHelper;
+    private final SpringTemplateEngine templateEngine;
 
     @Autowired
     public PdfService(OrderHelper orderHelper, SpringTemplateEngine templateEngine) {
